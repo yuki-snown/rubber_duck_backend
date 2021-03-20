@@ -19,7 +19,11 @@ class WordsController < ApplicationController
 
         # 言語処理系 一致するkey, patternを抽出 or resp文章を作成
         natto.parse(params[:text]) do |n|
-            if n.surface.include?("ひより") then
+            if n.surface.include?("かわいい") then
+                flag = true
+                surface.push("えへへー")
+                break
+            elsif n.surface.include?("ひより") then
                 flag = true
                 surface.push("はーい！！")
                 break
@@ -54,7 +58,7 @@ class WordsController < ApplicationController
                 if surface.length < 3 then
                     render json: {'msg': "だよね！"}, :status => 200
                 elsif
-                    render json: {'msg': "ごめんよ！分かんないや"}, :status => 200
+                    render json: {'msg': "ごめんよ！分かんないや\nもう少し教えて！ありがとう"}, :status => 200
                 end
             end    
         end
