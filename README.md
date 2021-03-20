@@ -26,7 +26,7 @@
 {"msg":"OK"}
 
 
-### - method: GET  URL: /word
+### - method: GET  URL: /
 
 ```
 * params
@@ -40,7 +40,7 @@
 
 ## example
 
-http://localhost/word?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
+http://localhost?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
 
 ## response
 {"msg":"それが難しいのはどうしてだと思いますか?"}
