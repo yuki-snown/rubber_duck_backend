@@ -17,7 +17,11 @@ class WordsController < ApplicationController
         flag = false
 
         natto.parse(params[:text]) do |n|
-            if n.feature.include?("感動詞") then
+            if n.surface.include?("ひより") then
+                flag = true
+                surface.push("はーい！！")
+                break
+            elsif n.feature.include?("感動詞") then
                 flag = true
                 surface.push(n.surface)
                 break
@@ -36,7 +40,7 @@ class WordsController < ApplicationController
             if msg.present? then
                 render json: {'msg':msg.message}, :status => 200                
             else
-                render json: {'msg': "すいません．分かりません"}, :status => 200                
+                render json: {'msg': "ごめんよ！分かんないや"}, :status => 200                
             end    
         end
     end
