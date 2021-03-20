@@ -17,6 +17,7 @@ class WordsController < ApplicationController
         pattern = ''
         flag = false
 
+        # 言語処理系 一致するkey, patternを抽出 or resp文章を作成
         natto.parse(params[:text]) do |n|
             if n.surface.include?("ひより") then
                 flag = true
@@ -30,6 +31,10 @@ class WordsController < ApplicationController
                 flag = true
                 surface.push("#{n.surface}！！")
                 break
+            elsif n.surface.include?("ない") && surface[-1].include?("でき") then
+                flag = true
+                surface.push("どうして，#{surface[-2]}ができないの？")
+                break
             elsif n.feature.include?("形容詞") || n.feature.include?("動詞") 
                 key = "#{n.surface}"
                 pattern = "#{surface[-1]}#{n.surface}"
@@ -38,6 +43,7 @@ class WordsController < ApplicationController
             feature.push(n.feature.split(',')[0])
         end
 
+        # 検索とrespの処理系
         if flag then
             render json: {'msg': "#{surface[-1]}"}, :status => 200
         else
