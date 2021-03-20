@@ -34,11 +34,11 @@ class WordsController < ApplicationController
         end
 
         if flag then
-            render json: {'msg': "#{surface[-1]}"}, :status => 200
+            render json: {'msg': "#{surface[-1]}!"}, :status => 200
         else
             msg =  Word.order(rank: :desc).find_by(key: [key, '*'], pattern: [pattern, '*'])
             if msg.present? then
-                render json: {'msg':msg.message}, :status => 200                
+                render json: {'msg': "#{msg.message}!"}, :status => 200                
             else
                 render json: {'msg': "ごめんよ！分かんないや"}, :status => 200                
             end    
