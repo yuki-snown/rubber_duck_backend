@@ -2,6 +2,8 @@
 
 ## 環境開発
 
+### 現状のファイル構成の場合はsh server.shのみで立ち上がる
+
 ### 1.以下のグーグルスプレッドシートからcsvファイルをエクスポートする
 
 #### https://docs.google.com/spreadsheets/d/1k5-1gZGVhEzTIJ8hbnyg43jOzIWi8KPyOveJiUB_WME/edit#gid=0 
@@ -14,15 +16,22 @@
 
 <br><br>
 
-## interface定義
+## --- interface定義 ---
 
-### method: GET  URL: /word
+### - method: GET  URL: /health
+
+### ヘルスチェック用のAPIです
+
+## response
+{"msg":"OK"}
+
+
+### - method: GET  URL: /word
 
 ```
 * params
 
-    key: str
-    pattern: str
+    text: string
 
 ```
 
@@ -31,7 +40,7 @@
 
 ## example
 
-http://localhost:3000/word?key=%E9%9B%A3%E3%81%97%E3%81%84&pattern=%E3%81%AF%E9%9B%A3%E3%81%97%E3%81%84
+http://localhost:3000/word?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
 
 ## response
 {"msg":"それが難しいのはどうしてだと思いますか?"}
