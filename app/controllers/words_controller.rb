@@ -1,5 +1,6 @@
 
 require 'natto'
+require 'securerandom'
 
 # debugger => binding.pry
 
@@ -21,6 +22,10 @@ class WordsController < ApplicationController
                 flag = true
                 surface.push("はーい！！")
                 break
+            elsif n.surface.include?("すごい") then
+                flag = true
+                surface.push("でしょ！！")
+                break
             elsif n.feature.include?("感動詞") then
                 flag = true
                 surface.push(n.surface)
@@ -40,7 +45,11 @@ class WordsController < ApplicationController
             if msg.present? then
                 render json: {'msg': "#{msg.message}!"}, :status => 200                
             else
-                render json: {'msg': "ごめんよ！分かんないや"}, :status => 200                
+                rnd = SecureRandom.random_number(2)
+                if rnd then
+                    render json: {'msg': "ごめんよ！分かんないや"}, :status => 200
+                else
+                    render json: {'msg': "だよね！"}, :status => 200
             end    
         end
     end
