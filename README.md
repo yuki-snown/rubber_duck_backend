@@ -40,7 +40,7 @@
 
 ## example
 
-http://localhost:3000/word?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
+http://localhost/word?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
 
 ## response
 {"msg":"それが難しいのはどうしてだと思いますか?"}
