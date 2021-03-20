@@ -1,6 +1,8 @@
 
 require 'natto'
 
+# debugger => binding.pry
+
 class WordsController < ApplicationController
     def health
         render json: {'msg': "OK"}, :status => 200  
@@ -30,7 +32,6 @@ class WordsController < ApplicationController
         if flag then
             render json: {'msg': "#{surface[-1]}"}, :status => 200
         else
-            binding.pry
             msg =  Word.order(rank: :desc).find_by(key: [key, '*'], pattern: [pattern, '*'])
             if msg.present? then
                 render json: {'msg':msg.message}, :status => 200                
