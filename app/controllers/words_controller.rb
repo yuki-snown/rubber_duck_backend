@@ -55,16 +55,14 @@ class WordsController < ApplicationController
             if msg.present? then
                 render json: {'msg': "#{msg.message}"}, :status => 200                
             else
-                rnd = SecureRandom.random_number(4)
+                rnd = SecureRandom.random_number(3)
                 if surface.length < 4 then
                     render json: {'msg': "だよね！"}, :status => 200
                 elsif rnd = 0
-                    render json: {'msg': "ごめんよ！分かんないや"}, :status => 200
-                elsif rnd = 1
                     render json: {'msg': "もう少し教えて！"}, :status => 200
-                elsif rnd = 2
+                elsif rnd = 1
                     render json: {'msg': "他には？？"}, :status => 200
-                elsif rnd = 3
+                elsif rnd = 2
                     render json: {'msg': "気分転換でもしたら？"}, :status => 200
                 end
             end
