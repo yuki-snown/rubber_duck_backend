@@ -52,7 +52,7 @@ class WordsController < ApplicationController
                 render json: {'msg': "#{msg.message}"}, :status => 200                
             else
                 rnd = SecureRandom.random_number(2)
-                if rnd then
+                if rnd == 1 then
                     render json: {'msg': "ごめんよ！分かんないや"}, :status => 200
                 elsif
                     render json: {'msg': "だよね！"}, :status => 200
