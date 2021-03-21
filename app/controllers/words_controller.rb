@@ -19,13 +19,9 @@ class WordsController < ApplicationController
 
         # 言語処理系 一致するkey, patternを抽出 or resp文章を作成
         natto.parse(params[:text]) do |n|
-            if n.surface.include?("かわいい") then
+            if n.surface.include?("可愛い") then
                 flag = true
                 surface.push("えへへー")
-                break
-            elsif n.surface.include?("ひより") then
-                flag = true
-                surface.push("はーい！！")
                 break
             elsif n.surface.include?("すごい") then
                 flag = true
@@ -34,6 +30,10 @@ class WordsController < ApplicationController
             elsif n.feature.split(',')[0] == "感動詞" then
                 flag = true
                 surface.push("#{n.surface}！！")
+                break
+            elsif n.surface.include?("ひより") then
+                flag = true
+                surface.push("はーい！！")
                 break
             elsif n.surface.include?("ない") && surface[-1].include?("でき") then
                 flag = true
