@@ -31,7 +31,7 @@ class WordsController < ApplicationController
                 flag = true
                 surface.push("でしょ！")
                 break
-            elsif n.feature.include?("感動詞") then
+            elsif n.feature == "感動詞" then
                 flag = true
                 surface.push("#{n.surface}！！")
                 break
@@ -39,7 +39,7 @@ class WordsController < ApplicationController
                 flag = true
                 surface.push("どうして，#{surface[-2]}ができないの？")
                 break
-            elsif n.feature.include?("形容詞") || n.feature.include?("動詞") 
+            elsif (n.feature == "形容詞") || (n.feature == "動詞") then
                 key = "#{n.surface}"
                 pattern = "#{surface[-1]}#{n.surface}"
             end
