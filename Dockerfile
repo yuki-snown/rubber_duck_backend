@@ -20,7 +20,7 @@ RUN apt update && apt install -y --no-install-recommends \
     build-essential default-mysql-client default-libmysqlclient-dev \
     mecab libmecab-dev mecab-ipadic-utf8
 
-ARG RAILS_ENV=production
+ARG RAILS_ENV=development
 ENV RAILS_ENV ${RAILS_ENV}
 
 RUN gem update bundler
