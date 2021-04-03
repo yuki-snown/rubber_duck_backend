@@ -4,43 +4,29 @@
 
 ### 現状のファイル構成の場合はsh server.shのみで立ち上がる
 
-### 1.以下のグーグルスプレッドシートからcsvファイルをエクスポートする
+### server.shを叩かずにappを立ち上げる場合は以下の手順を踏む
+* #### https://docs.google.com/spreadsheets/d/1k5-1gZGVhEzTIJ8hbnyg43jOzIWi8KPyOveJiUB_WME/edit#gid=0 からcsvファイルをエクスポートする
+* #### 2.エクスポートしたファイルの名前を duck.csv に変更し，db/seeds 以下に配置する
+* #### 3.fast.Dockerfileもしくはlight.Dockerfileの名前をDockerfileに変更
+* #### 4.その後，$sh server.shでコンテナを立ち上げる
 
-#### https://docs.google.com/spreadsheets/d/1k5-1gZGVhEzTIJ8hbnyg43jOzIWi8KPyOveJiUB_WME/edit#gid=0 
 
-### 2.エクスポートしたファイルの名前を duck.csv に変更し，df/seeds 以下に配置する
-
-### 3.fast.Dockerfileもしくはlight.Dockerfileの名前をDockerfileに変更
-
-### 4.その後，$sh server.shでコンテナを立ち上げる
-
-<br><br>
+<br>
 
 ## --- interface定義 ---
 
-### - method: GET  URL: /health
+* ### method: GET  URL: /health
+    * ヘルスチェック用のAPIです
+    * response: {"msg":"OK"}
 
-### ヘルスチェック用のAPIです
+* ### method: GET  URL: /
+    * elizaの言語用のAPIです
+    ```
+    　query params
 
-## response
-{"msg":"OK"}
+        text: string
 
+    ```
+    * example: http://localhost?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
 
-### - method: GET  URL: /
-
-```
-* params
-
-    text: string
-
-```
-
-### 検索成功の場合 status: 200, 失敗の場合 status:500 を返す．
-### また，検索件数が0件の場合は status: 200 で {"msg":"すいません．分かりません"} というレスポンスを返す
-
-## example
-
-http://localhost?text=js%E3%81%8C%E9%9B%A3%E3%81%97%E3%81%84
-
-## response
-{"msg":"それが難しいのはどうしてだと思いますか?"}
+    * response: {"msg":'なんでー？'}
