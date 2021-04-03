@@ -28,7 +28,7 @@ RUN gem update bundler
 COPY Gemfile .
 COPY Gemfile.lock .
 
-RUN bundle install --jobs=4
+RUN bundle install --jobs=4 --deployment --without development test
 
 COPY . .
 
