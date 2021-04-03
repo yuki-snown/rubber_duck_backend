@@ -53,5 +53,3 @@ test:
 production:
   <<: *default
   database: rubber_duck_production
-  username: rubber_duck
-  password: <%= ENV['RUBBER_DUCK_DATABASE_PASSWORD'] %>
